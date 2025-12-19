@@ -128,5 +128,95 @@ SELECT Name, Color, ListPrice
 FROM Production.Product
 WHERE Color = 'Black';
 
+SELECT Name, ListPrice
+FROM Production.Product
+WHERE ListPrice > 1000;
 
+SELECT Name, Color, ListPrice
+FROM Production.Product
+WHERE Color = 'Black' AND ListPrice > 500;
+
+SELECT Name, Color
+FROM Production.Product
+WHERE Color IN ('Red', 'Blue', 'Black');
+
+WHERE Color = 'Red' OR Color = 'Blue' OR Color =
+'Black'
+
+SELECT Name, ProductNumber
+FROM Production.Product
+WHERE Name LIKE '%Road%';
+
+SELECT
+COUNT(
+*) AS TotalProduk
+FROM Production.Product;
+
+SELECT Color,
+COUNT(
+*) AS JumlahProduk
+FROM Production.Product
+GROUP BY Color;
+
+SELECT ProductID,
+SUM(OrderQty) AS TotalTerjual,
+AVG(UnitPrice) AS
+RataRataHarga
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID;
+
+SELECT Color, Size,
+COUNT(*) AS Jumlah
+FROM Production.Product
+GROUP BY Color, Size;
+
+SELECT Color, COUNT(*) AS Jumlah
+FROM Production.Product
+GROUP BY Color
+HAVING COUNT(*) > 20;
+
+SELECT Color,
+COUNT(*) AS Jumlah
+FROM Production.Product
+WHERE ListPrice > 500
+GROUP BY Color
+HAVING
+COUNT(*) > 10;
+
+SELECT ProductID,
+SUM(OrderQty) AS TotalQty
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
+HAVING
+SUM(OrderQty) > 1000;
+
+SELECT Color
+FROM Production.Product
+GROUP BY Color
+HAVING
+MAX(ListPrice) > 3000;
+
+SELECT DISTINCT JobTitle
+FROM HumanResources.Employee;
+
+SELECT Name, ListPrice
+FROM Production.Product
+ORDER BY ListPrice DESC;
+
+SELECT TOP 5 Name, ListPrice
+FROM Production.Product
+ORDER BY ListPrice DESC;
+
+SELECT Name, ListPrice
+FROM Production.Product
+ORDER BY ListPrice DESC
+OFFSET 10 ROWS
+FETCH NEXT 5 ROWS ONLY;
+
+SELECT TOP 3 Color,
+SUM(ListPrice) AS TotalNilaiStok
+FROM Production.Product
+WHERE ListPrice > 0
+GROUP BY Color
+ORDER BY TotalNilaiStok DESC;
 
